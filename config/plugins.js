@@ -1,3 +1,12 @@
+const crypto = require('crypto');
+
+module.exports = ({ env }) => ({
+  'users-permissions': {
+    config: {
+      jwtSecret: env('JWT_SECRET') || crypto.randomBytes(16).toString('base64'),
+    },
+  },
+});
 module.exports = ({ env }) => ({
   upload: {
     config: {
@@ -13,8 +22,5 @@ module.exports = ({ env }) => ({
       },
     },
   },
-  // Add the users-permissions plugin configuration
-  'users-permissions': {
-    jwtSecret: env('JWT_SECRET'), // Set your JWT secret key here
-  },
+  
 });
